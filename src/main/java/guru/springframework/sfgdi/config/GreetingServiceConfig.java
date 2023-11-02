@@ -3,15 +3,18 @@
  */
 package guru.springframework.sfgdi.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 
 import com.springframework.pets.PetService;
 import com.springframework.pets.PetServiceFactory;
 
+import guru.springframework.sfgdi.datasource.FakeDataSource;
 import guru.springframework.sfgdi.repositories.EnglishGreetingRepository;
 import guru.springframework.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import guru.springframework.sfgdi.services.ConstructorGreetingService;
@@ -26,9 +29,23 @@ import guru.springframework.sfgdi.services.SetterInjectedGreetingService;
  * 
  * on 31/10/2023
  */
+
+@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
+	
+	@Bean
+	FakeDataSource fakeDataSource(@Value("${enma.username}") String username,
+			@Value("${enma.password}") String password,
+			@Value("${enma.jdbcurl}") String jdbcurl) {
+		FakeDataSource fakeDataSource = new FakeDataSource();
+		fakeDataSource.setUsername(username);
+		fakeDataSource.setPassword(password);
+		fakeDataSource.setJdbcurl(jdbcurl);
+		
+		return fakeDataSource;
+	}
 	
 	@Bean
 	PetServiceFactory petServiceFactory() {
