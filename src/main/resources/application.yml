@@ -1,7 +1,18 @@
 spring:
    profiles:
-      active: dog, EN, qa
+      active: 
+         - dog
+         - EN
+         - prod
 enma:
    username: pharmadmin
    password: pharmadmin
    jdbcurl: jdbc:mysql://localhost:3306/pharma?autoReconnect\=true&useSSL=false
+   
+---
+spring:
+   profiles: prod
+enma:
+   username: pharmadmin
+   password: pharmadmin
+   jdbcurl: jdbc:mysql://localhost_prod:3306/pharma?autoReconnect\=true&useSSL=false   
