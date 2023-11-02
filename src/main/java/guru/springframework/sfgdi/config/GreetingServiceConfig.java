@@ -30,7 +30,7 @@ import guru.springframework.sfgdi.services.SetterInjectedGreetingService;
  * on 31/10/2023
  */
 
-@PropertySource("classpath:datasource.properties")
+// @PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
