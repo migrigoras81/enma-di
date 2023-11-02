@@ -35,14 +35,24 @@ import guru.springframework.sfgdi.services.SetterInjectedGreetingService;
 @Configuration
 public class GreetingServiceConfig {
 	
+//	@Bean
+//	FakeDataSource fakeDataSource(@Value("${enma.username}") String username,
+//			@Value("${enma.password}") String password,
+//			@Value("${enma.jdbcurl}") String jdbcurl) {
+//		FakeDataSource fakeDataSource = new FakeDataSource();
+//		fakeDataSource.setUsername(username);
+//		fakeDataSource.setPassword(password);
+//		fakeDataSource.setJdbcurl(jdbcurl);
+//		
+//		return fakeDataSource;
+//	}
+	
 	@Bean
-	FakeDataSource fakeDataSource(@Value("${enma.username}") String username,
-			@Value("${enma.password}") String password,
-			@Value("${enma.jdbcurl}") String jdbcurl) {
+	FakeDataSource fakeDataSource(SfgConfiguration sfgConfiguration) {
 		FakeDataSource fakeDataSource = new FakeDataSource();
-		fakeDataSource.setUsername(username);
-		fakeDataSource.setPassword(password);
-		fakeDataSource.setJdbcurl(jdbcurl);
+		fakeDataSource.setUsername(sfgConfiguration.getUsername());
+		fakeDataSource.setPassword(sfgConfiguration.getPassword());
+		fakeDataSource.setJdbcurl(sfgConfiguration.getJdbcurl());
 		
 		return fakeDataSource;
 	}
