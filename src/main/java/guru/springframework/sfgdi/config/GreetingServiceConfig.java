@@ -4,6 +4,7 @@
 package guru.springframework.sfgdi.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -30,6 +31,7 @@ import guru.springframework.sfgdi.services.SetterInjectedGreetingService;
  * on 31/10/2023
  */
 
+@EnableConfigurationProperties(SfgConstructorConfig.class)
 // @PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfgdi-config.xml")
 @Configuration
@@ -47,12 +49,22 @@ public class GreetingServiceConfig {
 //		return fakeDataSource;
 //	}
 	
+//	@Bean
+//	FakeDataSource fakeDataSource(SfgConfiguration sfgConfiguration) {
+//		FakeDataSource fakeDataSource = new FakeDataSource();
+//		fakeDataSource.setUsername(sfgConfiguration.getUsername());
+//		fakeDataSource.setPassword(sfgConfiguration.getPassword());
+//		fakeDataSource.setJdbcurl(sfgConfiguration.getJdbcurl());
+//		
+//		return fakeDataSource;
+//	}
+	
 	@Bean
-	FakeDataSource fakeDataSource(SfgConfiguration sfgConfiguration) {
+	FakeDataSource fakeDataSource(SfgConstructorConfig sfgConstructorConfig) {
 		FakeDataSource fakeDataSource = new FakeDataSource();
-		fakeDataSource.setUsername(sfgConfiguration.getUsername());
-		fakeDataSource.setPassword(sfgConfiguration.getPassword());
-		fakeDataSource.setJdbcurl(sfgConfiguration.getJdbcurl());
+		fakeDataSource.setUsername(sfgConstructorConfig.getUsername());
+		fakeDataSource.setPassword(sfgConstructorConfig.getPassword());
+		fakeDataSource.setJdbcurl(sfgConstructorConfig.getJdbcurl());
 		
 		return fakeDataSource;
 	}
