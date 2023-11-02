@@ -1,0 +1,4 @@
+enma:
+   username: qa_pharmadmin
+   password: qa_pharmadmin
+   jdbcurl: jdbc:mysql://localhost_qa:3306/pharma?autoReconnect\=true&useSSL=false

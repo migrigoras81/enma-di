@@ -1,7 +1,7 @@
 spring:
    profiles:
-      active: dog, EN
+      active: dog, EN, qa
 enma:
-   username: Ymlusernae
-   password: Ymlpassword
-   jdbcurl: Ymljdbc
+   username: pharmadmin
+   password: pharmadmin
+   jdbcurl: jdbc:mysql://localhost:3306/pharma?autoReconnect\=true&useSSL=false
